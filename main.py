@@ -1,5 +1,8 @@
 import discord
 from discord.ext import bridge
+import os
+
+my_secret = os.environ['TOKEN']
 
 intents = discord.Intents.all()
 client = bridge.Bot(command_prefix="!", intents=intents)
@@ -15,7 +18,7 @@ async def ping(ctx):
 
 
 
-cogs = []
-client.load_extension("nitro")
+client.load_extensions('time')
+client.load_extension('setup')
 
-client.run('MTE2NzE5MTAxMjU4NjgxNTYyOA.G8AKYO.mtPHzLs-oIb-4FTLNYPJjE8vNbo6SsSVX_jDFE')
+client.run(my_secret)
