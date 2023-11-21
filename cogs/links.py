@@ -3,6 +3,7 @@ from discord.ext import commands, bridge
 import discord.utils
 
 
+
 class Link_commands(commands.Cog):
 
   def __init__(self, client):
@@ -15,7 +16,7 @@ class Link_commands(commands.Cog):
         title="Links!",
         description="Click the link button below!",
         color=0x00ff00),
-                    view=Interstellar_buttons())
+                    view=Interstellar_buttons(timeout=None))
 
 
 class Interstellar_buttons(discord.ui.View):
