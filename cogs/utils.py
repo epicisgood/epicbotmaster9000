@@ -1,5 +1,4 @@
-import pytz, time, datetime, asyncio, re
-from dateparser import parse
+import pytz, datetime, asyncio
 import discord
 from discord.ext.commands import MissingRequiredArgument
 from discord.ext import bridge, commands

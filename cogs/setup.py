@@ -18,14 +18,15 @@ class Nitro_commands(commands.Cog):
   
 
 
-
 class Channel_button(discord.ui.View):
   @discord.ui.button(label="Nitro Boost", style=discord.ButtonStyle.grey, emoji="🟣")
   async def boost_callback(self,button, interaction: discord.Interaction):
     channel = await interaction.guild.create_text_channel("🟣nitro-boost🟣",topic="nitro boost gw currently going on", category=interaction.channel.category)
     await channel.send(embed=discord.Embed(title="Remove", description="Delete this channel", color=0xff0000),view=delete_button())
     await interaction.response.send_message(content= f" Created Nitro boost channel {channel.mention}", ephemeral=True)
-    
+
+
+  
   @discord.ui.button(label="Nitro Basic", style=discord.ButtonStyle.secondary, emoji="🔵")
   async def basic_callback(self, button, interaction: discord.Interaction):
     channel = await interaction.guild.create_text_channel("🔵nitro-boost🔵",topic="nitro basic gw currently going on", category=interaction.channel.category)

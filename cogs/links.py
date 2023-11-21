@@ -19,21 +19,44 @@ class Link_commands(commands.Cog):
 
 
 class Interstellar_buttons(discord.ui.View):
-
+  
   @discord.ui.button(label="Private links", style=discord.ButtonStyle.primary)
   async def link(self, button, interaction: discord.Interaction):
-    #if interaction.user.id == 726162926851063919:  #Myself lol
-      #await interaction.response.send_message(
-          #content="lol this is so cool guys", ephemeral=True)
-    if interaction.user.id == 1154785751293247548:  #jackcampbell
+    private_links = {
+      "Jackcampbell" : ["https://british-education.onrender.com/"],
+      "Mr.Storm" : ["https://rocky-mountains.onrender.com/"],
+      "Bando Jr" : ["https://common-language.onrender.com/"],
+      "Sasuke" : ["https://gummy-bears.onrender.com"],
+      "Jaxon" : ["https://zooming-in.onrender.com"],
+      "Liam" : ["https://iphone-16.onrender.com/"],
+      "Alex Cool Kid" : ["https://sneaky-sands.onrender.com/"],
+
+    }
+    placeholder = discord.Embed(title="Public links",
+      color=discord.Color.green())
+    
+    for key, value in private_links.items():
+      if isinstance(value, list):
+          value = "\n".join(value)
+      placeholder.add_field(name=key, value=value, inline=False)
+    
+    if interaction.user.id == 726162926851063919:  # Myself lol
+      await interaction.response.send_message(embed=placeholder, ephemeral=True)
+    elif interaction.user.id == 1154785751293247548:  # jackcampbell
       await interaction.response.send_message(
-          content="https://british-education.onrender.com/", ephemeral=True)
-    elif interaction.user.id == 869697201100714074:  #Mr.Storm
+          content= private_links["Jackcampbell"] , ephemeral=True)
+    elif interaction.user.id == 869697201100714074: # Mr.Storm
       await interaction.response.send_message(
-          content="https://rocky-mountains.onrender.com/", ephemeral=True)
-    elif interaction.user.id == 1020747577240588289:  #Bando Jr
+          content=private_links["Mr.Storm"], ephemeral=True)
+    elif interaction.user.id == 1020747577240588289:  # Bando jr
       await interaction.response.send_message(
-          content=" https://common-language.onrender.com/", ephemeral=True)
+          content= private_links["Bando Jr"], ephemeral=True)
+    elif interaction.user.id == 763523121025122365: # Sasuke
+      await interaction.response.send_message(content=private_links["Sasuke"], ephemeral=True)
+    elif interaction.user.id == 579504167811285012: # Jaxon
+      await interaction.response.send_message(content=private_links["Jaxon"], ephemeral=True)
+    elif interaction.user.id == 1012888161241813073: #Alex cool kid
+      await interaction.response.send_message(content=private_links["Alex cool kid"], ephemeral=True)
     else:
       await interaction.response.send_message(
           content=
