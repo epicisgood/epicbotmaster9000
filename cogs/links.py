@@ -29,7 +29,7 @@ class Interstellar_buttons(discord.ui.View):
       "Sasuke" : ["https://gummy-bears.onrender.com"],
       "Jaxon" : ["https://zooming-in.onrender.com"],
       "Liam" : ["https://iphone-16.onrender.com/"],
-      "Alex Cool Kid" : ["https://sneaky-sands.onrender.com/"],
+      "Alex Cool Kid" : ["spotsylvania.infra wharever ur link is u made a whole ago"],
 
     }
     placeholder = discord.Embed(title="Public links",
