@@ -1,10 +1,11 @@
 import pytz, time, datetime, asyncio, re
 from dateparser import parse
 import discord
+from discord.ext.commands import MissingRequiredArgument
 from discord.ext import bridge, commands
 
 
-class Epooch_command(commands.Cog):
+class Time_commands(commands.Cog):
 
   def __init__(self, client):
     self.client = client
@@ -25,9 +26,9 @@ class Epooch_command(commands.Cog):
     except ValueError:
       await ctx.reply('Invalid epoch time provided.')
 
-  @bridge.bridge_command(aliases=["rem"], description="Set a reminder")
+  
+  @bridge.bridge_command(aliases=["rem"], description="Set a reminder with 1s,1m,1h,1d")
   async def remind(self, ctx, time: str, *, content: str):
-
     def convert(time):
       pos = ['s', 'm', 'h', 'd', 'sec', 'min', 'hour', 'day']
 
@@ -36,10 +37,6 @@ class Epooch_command(commands.Cog):
           "m": 60,
           "h": 3600,
           "d": 3600 * 24,
-          "sec": 1,
-          "min": 60,
-          "hour": 3600,
-          "day": 3600 * 24
       }
 
       unit = time[-1]
@@ -50,6 +47,8 @@ class Epooch_command(commands.Cog):
         val = int(time[:-1])
       except ValueError:
         return -2
+      except MissingRequiredArgument:
+        return -2
 
       return val * time_dict[unit]
 
@@ -59,13 +58,13 @@ class Epooch_command(commands.Cog):
       await ctx.reply("You didn't answer the time correctly.")
       return
     if converted_time == -2:
-      await ctx.reply("The time was not an integer.")
+      await ctx.reply("The time was not an integer. Example: !remind 1m hello")
       return
     await ctx.reply(
-        f'Your reminder will activate in {time} content "{content}".')
+        content=f'Your reminder will activate in {time} content "{content}".', ephemeral=True)
     await asyncio.sleep(converted_time)
     await ctx.reply(f"{ctx.author.mention} {content}")
 
 
 def setup(client):
-  client.add_cog(Epooch_command(client))
+  client.add_cog(Time_commands(client))

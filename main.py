@@ -18,7 +18,6 @@ async def ping(ctx):
 
 
 
-client.load_extensions('time')
-client.load_extension('setup')
+client.load_extensions('utils',"setup", "links")
 
 client.run(my_secret)
